@@ -9,6 +9,9 @@ aside.app-sidebar {
   justify-content: space-between;
   align-items: center;
 }
+aside.app-sidebar.dark {
+  background: #222;
+}
 
 aside.app-sidebar img {
   width: 48px;
@@ -32,8 +35,16 @@ aside.app-sidebar footer button {
   justify-content: center;
   align-items: center;
 }
+aside.app-sidebar.dark footer a,
+aside.app-sidebar.dark footer button {
+  background: #333;
+}
 
 aside.app-sidebar footer a:hover,
 aside.app-sidebar footer button:hover {
   background: #17d6eb;
+}
+aside.app-sidebar.dark footer a:hover,
+aside.app-sidebar.dark footer button:hover {
+  background: #444;
 }

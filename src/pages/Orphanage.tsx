@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FiClock, FiInfo } from 'react-icons/fi';
 import { Map, Marker, TileLayer } from 'react-leaflet';
@@ -6,9 +6,12 @@ import { useParams } from 'react-router-dom';
 
 import Sidebar from '../components/Sidebar';
 import mapIcon from '../utils/mapIcon';
+import mapIconDark from '../utils/mapIconDark';
 import api from '../services/api';
 
 import '../styles/pages/orphanage.css';
+
+import { ThemeContext } from '../App';
 
 interface Orphanage {
   latitude: number;
@@ -29,6 +32,7 @@ interface OrphanageParams {
 }
 
 export default function Orphanage() {
+  const themeContext = useContext(ThemeContext);
   const params = useParams<OrphanageParams>();
   const [orphanage, setOrphanage] = useState<Orphanage>();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -44,11 +48,20 @@ export default function Orphanage() {
   }
 
   return (
-    <div id='page-orphanage'>
+    <div
+      id='page-orphanage'
+      className={themeContext.theme === 'dark' ? 'dark' : ''}
+    >
       <Sidebar />
 
       <main>
-        <div className='orphanage-details'>
+        <div
+          className={
+            themeContext.theme === 'dark'
+              ? 'orphanage-details dark'
+              : 'orphanage-details'
+          }
+        >
           {orphanage.images.length > 0 && (
             <>
               <img
@@ -91,11 +104,15 @@ export default function Orphanage() {
                 doubleClickZoom={false}
               >
                 <TileLayer
-                  url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                  url={`https://api.mapbox.com/styles/v1/mapbox/${
+                    themeContext.theme === 'dark' ? 'dark' : 'light'
+                  }-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${
+                    process.env.REACT_APP_MAPBOX_TOKEN
+                  }`}
                 />
                 <Marker
                   interactive={false}
-                  icon={mapIcon}
+                  icon={themeContext.theme === 'dark' ? mapIconDark : mapIcon}
                   position={[orphanage.latitude, orphanage.longitude]}
                 />
               </Map>

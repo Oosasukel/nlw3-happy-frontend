@@ -5,6 +5,14 @@
   position: relative;
   display: flex;
 }
+#page-map.dark {
+  background: #111;
+}
+
+#page-map aside .logoContainer {
+  display: flex;
+  justify-content: space-between;
+}
 
 #page-map aside {
   width: 440px;
@@ -14,6 +22,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+#page-map.dark aside {
+  background: #222;
 }
 
 #page-map aside h2 {
@@ -61,15 +72,24 @@
 
   transition: background-color 0.2s;
 }
+#page-map.dark .create-orphanage {
+  background: #444;
+}
 
 #page-map .create-orphanage:hover {
   background: #17d6eb;
+}
+#page-map.dark .create-orphanage:hover {
+  background: #555;
 }
 
 #page-map .map-popup .leaflet-popup-content-wrapper {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   box-shadow: none;
+}
+#page-map.dark .map-popup .leaflet-popup-content-wrapper {
+  background: rgba(0, 0, 0, 0.6);
 }
 
 #page-map .map-popup .leaflet-popup-content {
@@ -81,6 +101,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#page-map.dark .map-popup .leaflet-popup-content {
+  color: #fff;
 }
 
 #page-map .map-popup .leaflet-popup-content a {
@@ -94,7 +117,33 @@
   justify-content: center;
   align-items: center;
 }
+#page-map.dark .map-popup .leaflet-popup-content a {
+  background: #333;
+}
+#page-map.dark .map-popup .leaflet-popup-content a:hover {
+  background: #444;
+}
 
 #page-map .map-popup .leaflet-popup-tip-container {
   display: none;
+}
+
+.switch {
+  padding: 0 0.5rem 0 1rem;
+}
+
+.sun .react-switch-handle:before {
+  content: url('../../images/sun.svg');
+  display: block;
+  box-sizing: border-box;
+  padding: 3px;
+  font-size: 0;
+}
+
+.moon .react-switch-handle:before {
+  content: url('../../images/moon.svg');
+  display: block;
+  box-sizing: border-box;
+  padding: 3px;
+  font-size: 0;
 }
